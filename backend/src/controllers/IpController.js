@@ -1,6 +1,5 @@
 const BlacklistedIp = require('../models/BlacklistedIp');
 const DansIp = require('../models/DansIp');
-const { SocksProxyAgent } = require('socks-proxy-agent');
 const axios = require('axios');
 const fs = require('fs');
 var util = require('util');
@@ -9,25 +8,34 @@ const DansApiCalls = require('../models/DansApiCalls');
  
 const index = async(req,res) => {
     try {
-        const onionooIps = await getOnionooIps();
-        const dansIps = await getDansIps();
-        const allIps = concatUnique(onionooIps, dansIps);
+        const allIps = await getIps();
         return res.status(200).json(allIps);
     }catch(err){
         return res.status(500).json({err});
     }
 };
 
+const getIps = async (includeBlacklisted = 1) => {
+    const onionooIps = await getOnionooIps();
+    const dansIps = await getDansIps();
+    let allIps = concatUnique(onionooIps, dansIps);
+
+    if(!includeBlacklisted) {
+        let blacklist = await BlacklistedIp.findAll();
+        blacklist = blacklist.map((ip) => ip.address);
+        allIps = allIps.filter((address) => !blacklist.includes(address));
+    }
+
+    return allIps.filter((ip) => ip);
+}
+
 const concatUnique = (array0,array1) => {
     return array0.concat(array1.filter((element) => !array0.includes(element)));
 }
 
 const getDansIpsFromApi = async (ipAddressesFromDatabase) => {
-    const agent = new SocksProxyAgent('socks5h://127.0.0.1:9050');
-
     const response = await axios({
         url: 'https://www.dan.me.uk/torlist/',
-        httpsAgent: agent,
     });
 
     let ipAddressesFromApi = response.data.split('\n');
@@ -63,10 +71,8 @@ const getDansIps = async () => {
 }
  
 const getOnionooIps = async () => {
-    const agent = new SocksProxyAgent('socks5h://127.0.0.1:9050');
     const response = await axios({
         url: 'https://onionoo.torproject.org/summary?limit=5000',
-        httpsAgent: agent,
     });
 
     const ipAddresses = response.data.relays.map((relay) => relay.a[0]);
@@ -75,23 +81,24 @@ const getOnionooIps = async () => {
 }
 
 const nonBlacklistedIpsIndex = async(req,res) => {
-        const ips = index(req,res);
-        const blacklistedIps = await BlacklistedIp.findAll();
-        const blackListedIpAddresses = blacklistedIps.map((ip) => ip.address);
-        const nonBlackListedIpAddresses = ips.filter((address) => !blackListedIpAddresses.includes(address))
-        return res.status(200).json(nonBlackListedIpAddresses);
+        const ips = await getIps(0);
+        return res.status(200).json(ips);
 };
  
 const blacklistIp = async (req,res) => {
-    const {userId, ipAddress} = req.body;
-    const dansIp = await DansIp.findOne({where: {address: ipAddress}});
-    const dansIpId = dansIp.id;
-    const blacklistedIP = await blacklistIp.create({
-        address: ipAdress,
-        UserId: userId,
-        DansIpId: dansIpId
-    })
-    return res.status(200).json(blacklistedIp);
+    try {
+        const {userId, ipAddress} = req.body;
+        const dansIp = await DansIp.findOne({where: {address: ipAddress}});
+        const dansIpId = dansIp?.id;
+        const blacklistedIp = await BlacklistedIp.create({
+            address: ipAddress,
+            UserId: userId,
+            DansIpId: dansIpId
+        })
+        return res.status(200).json(blacklistedIp);
+    } catch(e) {
+        return res.status(500).json(e);
+    }
 }
 
 module.exports = {
