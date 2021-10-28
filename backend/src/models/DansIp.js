@@ -3,8 +3,9 @@ const sequelize = require('../config/sequelize');
 
 const DansIp = sequelize.define('DansIp', {
     address: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING,
         allowNull: false,
+        unique: true
     },
 });
 
