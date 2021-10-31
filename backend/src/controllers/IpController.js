@@ -85,7 +85,7 @@ const nonBlacklistedIpsIndex = async(req,res) => {
         return res.status(200).json(ips);
 };
  
-const blacklistIp = async (req,res) => {
+const putOnBlackList = async (req,res) => {
     try {
         const {userId, ipAddress} = req.body;
         const dansIp = await DansIp.findOne({where: {address: ipAddress}});
@@ -101,8 +101,15 @@ const blacklistIp = async (req,res) => {
     }
 }
 
+const blacklist = async (req,res) => {
+    const list = await BlacklistedIp.findAll();
+
+    return res.status(200).json(list.map((ip) => ip.address));
+}
+
 module.exports = {
     index,
     nonBlacklistedIpsIndex,
-    blacklistIp
+    putOnBlackList,
+    blacklist
 };
