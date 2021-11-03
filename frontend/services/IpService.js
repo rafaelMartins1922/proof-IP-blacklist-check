@@ -1,15 +1,17 @@
+import apiHost from "./apiHost";
+
 export async function getAllIps() {
-    const response = await fetch('http://localhost:3333/ips');
+    const response = await fetch(apiHost + 'ips');
     return response.json();
 }
 
 export async function getNonBlacklistedIps() {
-    const response = await fetch('http://localhost:3333/ips/nonBlacklisted');
+    const response = await fetch(apiHost + 'ips/nonBlacklisted');
     return response.json();
 }
 
 export async function putOnBlacklist(userId, ipAddress) {
-    const response = await fetch('http://localhost:3333/ips/putOnBlacklist', {
+    const response = await fetch(apiHost + 'ips/putOnBlacklist', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ userId, ipAddress })
