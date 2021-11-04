@@ -13,6 +13,7 @@ Os IPs são capturados das seguintes fontes:
 1. [Arquitetura](#arquitetura)
 1. [Autores](#autores)
 
+
 # Tecnologias utilizadas
 
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
@@ -113,7 +114,6 @@ A API do back end possui a seguinte estrutura de arquivos e pastas:
     │       BlacklistedIp.js
     │       DansApiCalls.js
     │       DansIp.js
-    │       User.js
     │
     └───routes
             routes.js
