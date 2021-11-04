@@ -8,9 +8,9 @@ Os IPs são capturados das seguintes fontes:
 
 # Tabela de Conteúdo
 1. [Tecnologias utilizadas](#tecnologias-utilizadas)
-1. Configuração e Inicialização
-1. Uso
-1. Arquitetura
+1. [Configuração e Inicialização](#configuracao-e-inicializacao)
+1. [Uso](#uso)
+1. [Arquitetura](#arquitetura)
 1. [Autores](#autores)
 
 # Tecnologias utilizadas
