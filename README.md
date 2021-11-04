@@ -1,7 +1,7 @@
 # PROOF IP Blacklist Checker
 
 O IP Blacklist Checker é uma aplicação simples para listagem de IPs da rede Tor. 
-Desenvolvida para o processo seletivo da PROOF, uma empresa de consultoria e serviços relacionados à Segurança da Informação, a aplicação exibe uma lista de IPs e permite a marcação de qualquer um deles como indesejável, adicionando-os à uma lista negra e assim permitindo que se filtre e exiba somente os desejáveis ou indesejáveis.
+Desenvolvida para o processo seletivo da PROOF, uma empresa de consultoria e serviços relacionados à Segurança da Informação, a aplicação exibe, em uma interface baseada no próprio site da empresa, uma lista de IPs e permite a marcação de qualquer um deles como indesejável, adicionando-os à uma lista negra e assim permitindo que se filtre e exiba somente os desejáveis ou indesejáveis.
 Os IPs são capturados das seguintes fontes:
 ● https://www.dan.me.uk/tornodes
 ● https://onionoo.torproject.org/summary?limit=5000
