@@ -186,10 +186,10 @@ Na pasta [services] estão os arquivos [apiHost.js](https://github.com/rafaelMar
 
 Na pasta [styles](https://github.com/rafaelMartins1922/proof-IP-blacklist-checker/tree/main/frontend/styles) estão os arquivos css com as estilizações da aplicação.
 
-
-
+## Links importantes
+- [Trello do projeto](https://trello.com/invite/b/OY05iWqg/7b295604affd70c11c14e1a5f7664443/processo-seletivo-proof)
+- [Prototipagem no figma](https://www.figma.com/file/V0ksbpFTcUfT1yr1bJAxxw/PROOF-IP-Blacklist-Checker?node-id=0%3A1)
+- [Modelagem do Banco de Dados](https://drive.google.com/file/d/1QEVJfF397iyqUqKy50QV-TSlWtXRhHKR/view?usp=sharing)
 
 # Autores
 - Rafael Maritns
-
-
