@@ -19,7 +19,6 @@ const sequelize = (process.env.DB_CONNECTION === 'sqlite')?
   );
 module.exports = sequelize;
 
-require('../models/User');
 require('../models/BlacklistedIp');
 require('../models/DansIp');
 require('../models/DansApiCalls');

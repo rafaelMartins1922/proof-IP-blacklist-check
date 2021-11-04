@@ -10,7 +10,6 @@ const BlacklistedIp = sequelize.define('BlacklistedIp', {
 });
 
 BlacklistedIp.associate = function(models) {
-    BlacklistedIp.belongsTo(models.User);
     BlacklistedIp.belongsTo(models.DansIp);
 }
 

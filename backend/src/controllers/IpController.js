@@ -87,12 +87,11 @@ const nonBlacklistedIpsIndex = async(req,res) => {
  
 const putOnBlackList = async (req,res) => {
     try {
-        const {userId, ipAddress} = req.body;
+        const {ipAddress} = req.body;
         const dansIp = await DansIp.findOne({where: {address: ipAddress}});
         const dansIpId = dansIp?.id;
         const blacklistedIp = await BlacklistedIp.create({
             address: ipAddress,
-            UserId: userId,
             DansIpId: dansIpId
         })
         return res.status(200).json(blacklistedIp);

@@ -7,7 +7,7 @@ export default function IpsTableComponent(props) {
     const ipTableRow = (ip, index) => (
         <tr key = {index}>
             <td>{ip}</td>
-            {props.mode !== 'blacklisted' && (<td><button disabled={props.loading} title="Bloquear IP" className="block-button" onClick={() => props.function(null,ip)}><MdBlock className="block-icon"/></button></td>)}
+            {props.mode !== 'blacklisted' && (<td><button disabled={props.loading} title="Bloquear IP" className="block-button" onClick={() => props.function(ip)}><MdBlock className="block-icon"/></button></td>)}
         </tr>
     );
 

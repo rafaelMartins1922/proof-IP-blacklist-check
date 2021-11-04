@@ -27,8 +27,8 @@ export default function IPListSectionComponent() {
     }, [loading])
 
     
-    const blacklistIp = async (userId, ipAddress) => {
-        await putOnBlacklist(userId, ipAddress);
+    const blacklistIp = async (ipAddress) => {
+        await putOnBlacklist(ipAddress);
         setLoading(true);
         setShowIpBlacklistedAlert(true);
         console.log('IP blacklistado!');

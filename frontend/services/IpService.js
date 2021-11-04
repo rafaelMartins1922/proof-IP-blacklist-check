@@ -10,11 +10,11 @@ export async function getNonBlacklistedIps() {
     return response.json();
 }
 
-export async function putOnBlacklist(userId, ipAddress) {
+export async function putOnBlacklist(ipAddress) {
     const response = await fetch(apiHost + 'ips/putOnBlacklist', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ userId, ipAddress })
+        body: JSON.stringify({ ipAddress })
     });
 
     return response.json();
