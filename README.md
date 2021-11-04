@@ -7,11 +7,11 @@ Os IPs são capturados das seguintes fontes:
 ● https://onionoo.torproject.org/summary?limit=5000
 
 # Tabela de Conteúdo
-1. Tecnologias utilizadas
+1. [Tecnologias utilizadas](#tecnologias-utilizadas)
 1. Configuração e Inicialização
 1. Uso
 1. Arquitetura
-1. Autores
+1. [Autores](#autores)
 
 # Tecnologias utilizadas
 
