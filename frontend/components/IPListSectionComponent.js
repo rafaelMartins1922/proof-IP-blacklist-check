@@ -2,7 +2,7 @@ import {getAllIps, getNonBlacklistedIps, putOnBlacklist, getBlacklist} from '../
 import { useState, useEffect } from 'react';
 import IpsTableComponent from './IpsTableComponent';
 import LoadingSpinnerComponent from './LoadingSpinnerComponent';
-import { Alert, ButtonGroup, Container, Toast } from 'react-bootstrap';
+import { Container, Toast } from 'react-bootstrap';
 
 export default function IPListSectionComponent() {
     const [ipList, setIpList] = useState(null);
